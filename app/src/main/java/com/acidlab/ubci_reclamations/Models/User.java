@@ -1,12 +1,15 @@
 package com.acidlab.ubci_reclamations.Models;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.Serializable;
 
 
 public class User implements Serializable {
 
-    private float id;
+    private int id;
 
     private String fname;
 
@@ -14,13 +17,16 @@ public class User implements Serializable {
 
     private String email;
 
-    private float role;
+    private int role;
+
+    static Context context;
+
 
 
     public User() {
     }
 
-    public User(float id, String fname, String lname, String email) {
+    public User(int id, String fname, String lname, String email) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -28,7 +34,7 @@ public class User implements Serializable {
     }
 // Getter Methods
 
-    public float getId() {
+    public int getId() {
         return id;
     }
 
@@ -44,7 +50,7 @@ public class User implements Serializable {
         return email;
     }
 
-    public float getRole() {
+    public int getRole() {
         return role;
     }
 
@@ -52,7 +58,7 @@ public class User implements Serializable {
 
     // Setter Methods
 
-    public void setId(float id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,7 +74,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public void setRole(float role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -82,5 +88,44 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
+    }
+
+    public void saveUser (Context context) {
+
+        SharedPreferences sharedPref = context.getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("id",id);
+        editor.putString("fname",fname);
+        editor.putString("lname",lname);
+        editor.putString("email",email);
+        editor.apply();
+
+    }
+
+
+    public static User getCurrentUser (Context context) {
+
+        SharedPreferences sharedPref = context.getSharedPreferences("login_data", Context.MODE_PRIVATE);
+
+        int id = sharedPref.getInt("id", 0);
+        String fname = sharedPref.getString("fname", null);
+        String lname = sharedPref.getString("lname", null);
+        String email = sharedPref.getString("email", null);
+
+        User u = new User(id,fname,lname,email);
+
+        if (email == null) {
+
+            return null;
+
+        }
+
+        else {
+
+            return u;
+
+        }
+
+
     }
 }

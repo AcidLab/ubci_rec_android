@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp">
+
+    <ImageView
+        android:id="@+id/statusImg"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ubci" />
+
+    <TextView
+        android:id="@+id/date_reclamation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/statusImg"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/sujet_reclamation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/date_reclamation"
+        android:layout_below="@id/date_reclamation"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Sujet : " />
+
+    <TextView
+        android:id="@+id/interlocuteur_reclamation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/sujet_reclamation"
+        android:layout_below="@id/sujet_reclamation"
+        android:layout_marginBottom="10dp"
+        android:text="Interlocuteur : " />
+
+    <TextView
+        android:id="@+id/priority_reclamation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/interlocuteur_reclamation"
+        android:layout_below="@id/interlocuteur_reclamation"
+        android:text="Priorité : " />
+</RelativeLayout>

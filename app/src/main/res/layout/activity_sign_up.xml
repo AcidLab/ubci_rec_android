@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+    <ProgressBar
+        android:id="@+id/progresseBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -39,7 +46,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/nom"
+            android:id="@+id/fname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nom"
@@ -48,7 +55,7 @@
             android:textColorHint="@color/ubcdi_nuance_1" />
 
         <EditText
-            android:id="@+id/lastName"
+            android:id="@+id/lname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prenom"
@@ -65,7 +72,7 @@
             android:textColorHint="@color/ubcdi_nuance_1" />
 
         <EditText
-            android:id="@+id/passwordInscription"
+            android:id="@+id/password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -85,16 +92,15 @@
             android:textSize="18dp" />
 
         <com.goodiebag.pinview.Pinview
-            android:layout_marginTop="10dp"
             android:id="@+id/pinview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             app:cursorVisible="true"
             app:forceKeyboard="true"
             app:hint="-"
             app:inputType="number"
             app:password="false"
-            app:pinBackground="@color/colorAccent"
             app:pinHeight="30dp"
             app:pinLength="8"
             app:pinWidth="30dp" />
@@ -105,13 +111,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:textAllCaps="false"
             android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/shape_btn_signup"
             android:padding="15dp"
             android:shadowColor="@android:color/transparent"
             android:text="@string/confirm"
+            android:textAllCaps="false"
             android:textColor="@color/ubcdi_nuance_1" />
 
 

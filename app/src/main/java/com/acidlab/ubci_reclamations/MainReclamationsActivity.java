@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
 
 import com.acidlab.ubci_reclamations.Adapters.PageAdapter;
 
@@ -19,6 +20,8 @@ public class MainReclamationsActivity extends AppCompatActivity {
     PageAdapter pageAdapter;
     TabItem tabEnCours;
     TabItem tabEnAttente;
+
+    Button ajouterReclamation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class MainReclamationsActivity extends AppCompatActivity {
         tabEnCours = findViewById(R.id.encours);
         tabEnAttente = findViewById(R.id.attente);
         viewPager = findViewById(R.id.viewPager);
+
+       // ajouterReclamation = findViewById(R.id.ajouter_reclamation);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);

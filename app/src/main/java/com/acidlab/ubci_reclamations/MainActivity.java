@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.acidlab.ubci_reclamations.Models.User;
 import com.acidlab.ubci_reclamations.networking.NetworkingAsyncResponse;
@@ -17,20 +18,21 @@ import com.acidlab.ubci_reclamations.networking.NetworkingHelper;
 public class MainActivity extends AppCompatActivity implements NetworkingAsyncResponse {
 
     EditText email, password;
-    Button login,signup;
-
+    Button login, signup;
+    ProgressBar loading;
 
     Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.onUserLogin(null);
 
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        loading = findViewById(R.id.progresseBar);
 
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
@@ -40,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements NetworkingAsyncRe
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loading.setVisibility(View.VISIBLE);
                 NetworkingHelper n = new NetworkingHelper(context);
-                n.login(email.getText().toString(),password.getText().toString());
+                n.login(email.getText().toString(), password.getText().toString());
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +59,14 @@ public class MainActivity extends AppCompatActivity implements NetworkingAsyncRe
 
     @Override
     public void onUserLogin(User user) {
-        if (user == null){
+        if (user == null) {
             Log.e("MSG", "Failed no user");
-        }else {
+            loading.setVisibility(View.GONE);
+        } else {
             Log.e("MSG", user.toString());
             Intent intent = new Intent(context, MainReclamationsActivity.class);
             context.startActivity(intent);
+            finish();
         }
     }
 

@@ -21,9 +21,9 @@ public class PageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new EnCours();
-            case 1:
                 return new EnAttente();
+            case 1:
+                return new EnCours();
 
             default:
                 return null;
