@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ubcdi_nuance_1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_arrow_white_black_24dp" />
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/inscription"
+            android:textColor="@color/white"
+            android:textSize="19dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nom"
+            android:inputType="textPersonName"
+            android:textColor="@color/ubcdi_nuance_1"
+            android:textColorHint="@color/ubcdi_nuance_1" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prenom"
+            android:inputType="textPersonName"
+            android:textColor="@color/ubcdi_nuance_1"
+            android:textColorHint="@color/ubcdi_nuance_1" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColor="@color/ubcdi_nuance_1"
+            android:textColorHint="@color/ubcdi_nuance_1" />
+
+        <EditText
+            android:id="@+id/passwordInscription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/mdp"
+            android:inputType="textPassword"
+            android:textColor="@color/ubcdi_nuance_1"
+            android:textColorHint="@color/ubcdi_nuance_1" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/poste"
+            android:textColor="@color/ubcdi_nuance_1"
+            android:textSize="18dp" />
+
+        <com.goodiebag.pinview.Pinview
+            android:layout_marginTop="10dp"
+            android:id="@+id/pinview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cursorVisible="true"
+            app:forceKeyboard="true"
+            app:hint="-"
+            app:inputType="number"
+            app:password="false"
+            app:pinBackground="@color/colorAccent"
+            app:pinHeight="30dp"
+            app:pinLength="8"
+            app:pinWidth="30dp" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_btn_signup"
+            android:padding="15dp"
+            android:shadowColor="@android:color/transparent"
+            android:text="@string/confirm"
+            android:textColor="@color/ubcdi_nuance_1" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

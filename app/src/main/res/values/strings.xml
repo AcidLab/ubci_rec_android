@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ubci-Reclamations</string>
+    <string name="inscription">Inscription</string>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="email">E-mail</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="poste">Numéro de poste </string>
+    <string name="confirm">Confirmer</string>
+    <string name="en_attente">En attente</string>
+    <string name="en_cours">En cours</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
