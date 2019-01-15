@@ -32,13 +32,6 @@ public class MainReclamationsActivity extends AppCompatActivity {
     Context context;
 
 
-    int sujet;
-    int locals;
-    int photo;
-
-    // int  action_bar_deco ;
-    // int menu_deco_user;
-//   int query;
 
 
     Button ajouterReclamation;
@@ -57,20 +50,15 @@ public class MainReclamationsActivity extends AppCompatActivity {
         tabEnCours = findViewById(R.id.encours);
         tabEnAttente = findViewById(R.id.attente);
         viewPager = findViewById(R.id.viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
 
         ajouterReclamation = findViewById(R.id.ajouter_reclamation);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
         viewPager.setAdapter(pageAdapter);
 
-        toolbar.setBackgroundColor(ContextCompat.getColor(MainReclamationsActivity.this,
-                R.color.ubcdi_nuance_1));
-        tabLayout.setBackgroundColor(ContextCompat.getColor(MainReclamationsActivity.this,
-                R.color.ubcdi_nuance_1));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(MainReclamationsActivity.this,
-                    R.color.ubcdi_nuance_1));
-        }
 
         ajouterReclamation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +67,31 @@ public class MainReclamationsActivity extends AppCompatActivity {
                 MainReclamationsActivity.this.startActivity(intent);
             }
         });
-        
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                toolbar.setBackgroundColor(ContextCompat.getColor(MainReclamationsActivity.this,
+                        R.color.ubcdi_nuance_1));
+                tabLayout.setBackgroundColor(ContextCompat.getColor(MainReclamationsActivity.this,
+                        R.color.ubcdi_nuance_1));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(ContextCompat.getColor(MainReclamationsActivity.this,
+                            R.color.ubcdi_nuance_1));
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -120,6 +132,7 @@ public class MainReclamationsActivity extends AppCompatActivity {
                 }
             });
             alertDialog.show();
+
 
 
             return true;

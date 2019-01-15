@@ -15,7 +15,7 @@ tools:context=".MainReclamationsActivity">
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/ubcdi_nuance_1"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
@@ -23,7 +23,7 @@ tools:context=".MainReclamationsActivity">
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/ubcdi_nuance_1"
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextColor="@android:color/black">
 

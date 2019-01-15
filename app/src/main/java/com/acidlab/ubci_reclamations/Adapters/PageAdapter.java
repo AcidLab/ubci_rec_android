@@ -29,6 +29,19 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
+    // This determines the title for each tab
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        switch (position) {
+            case 0:
+                return "En cours";
+            case 1:
+                return  "En Attente";
+            default:
+                return null;
+        }
+    }
 
     @Override
     public int getCount() {
