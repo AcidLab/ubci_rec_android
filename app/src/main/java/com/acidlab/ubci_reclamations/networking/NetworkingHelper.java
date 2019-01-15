@@ -2,12 +2,12 @@ package com.acidlab.ubci_reclamations.networking;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.acidlab.ubci_reclamations.Models.Entity;
 import com.acidlab.ubci_reclamations.Models.Local;
 import com.acidlab.ubci_reclamations.Models.Reclamation;
 import com.acidlab.ubci_reclamations.Models.User;
+import com.acidlab.ubci_reclamations.Utils.Utilities;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,12 +34,13 @@ public class NetworkingHelper {
     public NetworkingHelper(Context context) {
         this.context = context;
     }
+
     public NetworkingHelper(Fragment fragment) {
         this.fragment = fragment;
     }
 
 
-    public void register(final String fname, final String lname, final String email, final String password , final int code) {
+    public void register(final String fname, final String lname, final String email, final String password, final int code) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = this.url + "register";
 
@@ -64,16 +65,18 @@ public class NetworkingHelper {
 
                                 user.saveUser(context);
                                 List<Local> locals = new ArrayList<Local>();
+
                                 JSONArray localsObject = jsonResponse.getJSONArray("locals");
 
                                 for (int i = 0; i < localsObject.length(); i++) {
                                     JSONObject local = localsObject.getJSONObject(i);
                                     int idLocal = local.getInt("id");
                                     String labelLocal = local.getString("label");
-                                    Local localObject = new Local(idLocal,labelLocal);
+                                    Local localObject = new Local(idLocal, labelLocal);
                                     locals.add(localObject);
                                 }
 
+                                Local.setLocals(locals);
 
                                 List<Entity> entities = new ArrayList<Entity>();
                                 JSONArray entitiesObject = jsonResponse.getJSONArray("entities");
@@ -85,7 +88,7 @@ public class NetworkingHelper {
                                     String labelEntity = entity.getString("label");
                                     String abregeEntity = entity.getString("abrege");
                                     String regionEntity = entity.getString("region");
-                                    Entity entityObject = new Entity(idEntity,codeEntity,labelEntity,abregeEntity,regionEntity);
+                                    Entity entityObject = new Entity(idEntity, codeEntity, labelEntity, abregeEntity, regionEntity);
                                     entities.add(entityObject);
                                 }
 
@@ -141,7 +144,6 @@ public class NetworkingHelper {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 JSONObject clientObject = jsonResponse.getJSONObject("user");
 
-                                //getAttributs
                                 int id = clientObject.optInt("id");
                                 String lname = clientObject.optString("lname");
                                 String fname = clientObject.optString("fname");
@@ -156,10 +158,10 @@ public class NetworkingHelper {
                                     JSONObject local = localsObject.getJSONObject(i);
                                     int idLocal = local.getInt("id");
                                     String labelLocal = local.getString("label");
-                                    Local localObject = new Local(idLocal,labelLocal);
+                                    Local localObject = new Local(idLocal, labelLocal);
                                     locals.add(localObject);
                                 }
-
+                                Local.setLocals(locals);
 
                                 List<Entity> entities = new ArrayList<Entity>();
                                 JSONArray entitiesObject = jsonResponse.getJSONArray("entities");
@@ -171,7 +173,7 @@ public class NetworkingHelper {
                                     String labelEntity = entity.getString("label");
                                     String abregeEntity = entity.getString("abrege");
                                     String regionEntity = entity.getString("region");
-                                    Entity entityObject = new Entity(idEntity,codeEntity,labelEntity,abregeEntity,regionEntity);
+                                    Entity entityObject = new Entity(idEntity, codeEntity, labelEntity, abregeEntity, regionEntity);
                                     entities.add(entityObject);
                                 }
 
@@ -209,9 +211,9 @@ public class NetworkingHelper {
     }
 
 
-    public void getReaclamationEnAttente(final int id){
+    public void getReaclamationEnAttente(final int id, final String path) {
         RequestQueue queue = Volley.newRequestQueue(fragment.getContext());
-        String url = this.url + "getRecs";
+        String url = this.url + path;
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -225,7 +227,7 @@ public class NetworkingHelper {
                             if (!response.equals("error")) {
 
                                 JSONArray jsonResponse = new JSONArray(response);
-                                if (jsonResponse.length() != 0 ) {
+                                if (jsonResponse.length() != 0) {
 
                                     List<Reclamation> reclamations = new ArrayList<Reclamation>();
                                     JSONArray reclamationsArray = jsonResponse;
@@ -256,16 +258,25 @@ public class NetworkingHelper {
                                         reclamations.add(reclamation);
                                     }
 
-                                    ((NetworkingAsyncResponse) fragment).onReclamationEnAttenteGetter(reclamations);
-                                }else {
+                                    if (path.equals(Utilities.GetRecs)) {
+                                        ((NetworkingAsyncResponse) fragment).onReclamationEnCoursGetter(reclamations);
+                                    } else if (path.equals(Utilities.GetQuery)) {
+                                        ((NetworkingAsyncResponse) fragment).onReclamationEnAttenteGetter(reclamations);
+                                    }
+                                } else {
+                                    if (path.equals(Utilities.GetRecs)) {
+                                        ((NetworkingAsyncResponse) fragment).onReclamationEnCoursGetter(null);
+                                    } else if (path.equals(Utilities.GetQuery)) {
+                                        ((NetworkingAsyncResponse) fragment).onReclamationEnAttenteGetter(null);
+                                    }
+                                }
+                            } else {
+
+                                if (path.equals(Utilities.GetRecs)) {
+                                    ((NetworkingAsyncResponse) fragment).onReclamationEnCoursGetter(null);
+                                } else if (path.equals(Utilities.GetQuery)) {
                                     ((NetworkingAsyncResponse) fragment).onReclamationEnAttenteGetter(null);
                                 }
-                            }
-
-                            else {
-
-                                ((NetworkingAsyncResponse) fragment).onReclamationEnAttenteGetter(null);
-
                             }
 
                         } catch (JSONException e) {

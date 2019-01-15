@@ -89,7 +89,7 @@
             android:layout_marginLeft="5dp"
             android:text="@string/poste"
             android:textColor="@color/ubcdi_nuance_1"
-            android:textSize="18dp" />
+            android:textSize="19dp" />
 
         <com.goodiebag.pinview.Pinview
             android:id="@+id/pinview"

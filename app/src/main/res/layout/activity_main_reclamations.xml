@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical"
 tools:context=".MainReclamationsActivity">
-
-<android.support.v7.widget.Toolbar
-    android:id="@+id/toolbar"
+<LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+    android:layout_height="match_parent">
 
-<android.support.design.widget.TabLayout
-    android:id="@+id/tablayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    app:tabSelectedTextColor="@android:color/white"
-    app:tabTextColor="@android:color/black">
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/encours"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        style="@style/HeaderBar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/en_cours" />
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-    <android.support.design.widget.TabItem
-        android:id="@+id/attente"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/en_attente" />
+        android:background="@color/colorPrimary"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/black">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/encours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/en_cours" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/attente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/en_attente" />
 
 
-</android.support.design.widget.TabLayout>
+    </android.support.design.widget.TabLayout>
 
-<android.support.v4.view.ViewPager
-    android:id="@+id/viewPager"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
+    <Button
+        android:id="@+id/ajouter_reclamation"
+        android:background="@drawable/plus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp" />
+</RelativeLayout>

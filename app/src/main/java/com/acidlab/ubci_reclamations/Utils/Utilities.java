@@ -1,22 +1,32 @@
 package com.acidlab.ubci_reclamations.Utils;
 
-import android.widget.EditText;
-import android.widget.TextView;
+import android.content.Context;
 
-import com.acidlab.ubci_reclamations.Models.User;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Utilities {
 
-    static public User currentUser;
+    public static String GetRecs = "getRecs";
+    public static String GetQuery = "getQuery";
 
-    public static  boolean isValidEmail(String email) {
+    public static boolean isValidEmail(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
 
-    private static Boolean isEditTextEmpty(EditText textView) {
-        return textView.getText().toString().equals("");
+    public static void alert(Context context, int typeAlerte, String title, String message) {
+        SweetAlertDialog alertDialog = new SweetAlertDialog(context, typeAlerte);
+        alertDialog.setTitleText(title);
+        alertDialog.setContentText(message);
+        alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        }).show();
     }
+
+
 }

@@ -30,7 +30,7 @@
         <EditText
             android:lines="1"
             android:maxLines="1"
-            android:text="khelif@gmail.com"
+            android:text="rh_slc@outlook.com"
             android:id="@+id/email"
             android:inputType="text"
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:textColorHint="@color/white"/>
 
         <EditText
-            android:text="aaaaaa"
+            android:text="adminadmin"
             android:lines="1"
             android:maxLines="1"
             android:inputType="textPassword"

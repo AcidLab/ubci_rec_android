@@ -14,4 +14,6 @@ public interface NetworkingAsyncResponse {
 
     default void onReclamationEnAttenteGetter(List<Reclamation> reclamations) {}
 
+    default void onReclamationEnCoursGetter(List<Reclamation> reclamations) {}
+
 }

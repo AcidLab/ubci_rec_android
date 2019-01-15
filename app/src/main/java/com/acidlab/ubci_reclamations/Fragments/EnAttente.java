@@ -14,6 +14,7 @@ import com.acidlab.ubci_reclamations.Adapters.ReclamationAdapter;
 import com.acidlab.ubci_reclamations.Models.Reclamation;
 import com.acidlab.ubci_reclamations.Models.User;
 import com.acidlab.ubci_reclamations.R;
+import com.acidlab.ubci_reclamations.Utils.Utilities;
 import com.acidlab.ubci_reclamations.networking.NetworkingAsyncResponse;
 import com.acidlab.ubci_reclamations.networking.NetworkingHelper;
 
@@ -23,8 +24,6 @@ import java.util.List;
 public class EnAttente extends Fragment implements NetworkingAsyncResponse{
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     public EnAttente() {
     }
@@ -36,12 +35,11 @@ public class EnAttente extends Fragment implements NetworkingAsyncResponse{
 
         View view = inflater.inflate(R.layout.fragment_en_attente, container, false);
         NetworkingHelper n = new NetworkingHelper(this);
-       // n.getReaclamationEnAttente(1);
-        n.getReaclamationEnAttente(User.getCurrentUser(getContext()).getId());
+        n.getReaclamationEnAttente(User.getCurrentUser(getContext()).getId(), Utilities.GetQuery);
 
         mRecyclerView = view.findViewById(R.id.en_attente_reclamations);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         return view;
@@ -53,9 +51,8 @@ public class EnAttente extends Fragment implements NetworkingAsyncResponse{
         if (reclamations == null){
             Log.e("MSG","RECLAMATIONS VIDE");
         }else {
-            Log.e("MSG",reclamations.size()+"RECLAMATIONS Trouvées");
-
-            mAdapter = new ReclamationAdapter(reclamations);
+            Log.e("MSG",reclamations.size()+" RECLAMATIONS Trouvées");
+            RecyclerView.Adapter mAdapter = new ReclamationAdapter(reclamations);
             mRecyclerView.setAdapter(mAdapter);
 
         }

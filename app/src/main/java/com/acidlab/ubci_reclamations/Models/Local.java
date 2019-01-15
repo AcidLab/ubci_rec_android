@@ -1,6 +1,9 @@
 package com.acidlab.ubci_reclamations.Models;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Local {
 
     private float id;
@@ -13,10 +16,20 @@ public class Local {
 
     private String region;
 
+    static private List<Local> Locals = new ArrayList<Local>();
+
 
     public Local(float id, String label) {
         this.id = id;
         this.label = label;
+    }
+
+    public static List<Local> getLocals() {
+        return Locals;
+    }
+
+    public static void setLocals(List<Local> locals) {
+        Locals = locals;
     }
 
     // Getter Methods

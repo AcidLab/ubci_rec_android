@@ -22,8 +22,6 @@ public class Entity {
         this.abrege = abrege;
         this.region = region;
     }
-// Getter Methods
-
 
     public float getId() {
         return id;

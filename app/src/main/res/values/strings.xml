@@ -12,5 +12,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deconnexion">Déconnexion</string>
+    <string name="options">Options</string>
+    <string name="ajouter_photo">Ajouter photo</string>
+    <string name="ecrivez_ici_le_sujet">Ecrivez ici le sujet</string>
+    <string name="sujet_de_la_reclamation">Sujet de la reclamation :</string>
+    <string name="choisir">Choisir</string>
+    <string name="ajout_reclamation">Ajouter réclamation</string>
+    <string name="locale">Locale :</string>
+    <string name="non_selectionn">Non selectionné</string>
+
 
 </resources>

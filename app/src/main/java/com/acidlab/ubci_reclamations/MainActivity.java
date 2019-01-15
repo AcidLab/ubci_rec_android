@@ -11,8 +11,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.acidlab.ubci_reclamations.Models.User;
+import com.acidlab.ubci_reclamations.Utils.Utilities;
 import com.acidlab.ubci_reclamations.networking.NetworkingAsyncResponse;
 import com.acidlab.ubci_reclamations.networking.NetworkingHelper;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MainActivity extends AppCompatActivity implements NetworkingAsyncResponse {
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NetworkingAsyncRe
         if (user == null) {
             Log.e("MSG", "Failed no user");
             loading.setVisibility(View.GONE);
+            Utilities.alert(context, SweetAlertDialog.ERROR_TYPE,"Erreur","Échec d'authentification");
+
         } else {
             Log.e("MSG", user.toString());
             Intent intent = new Intent(context, MainReclamationsActivity.class);

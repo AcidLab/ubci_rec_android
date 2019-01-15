@@ -101,6 +101,15 @@ public class User implements Serializable {
         editor.apply();
 
     }
+    public static void deleteUser (Context context) {
+
+        SharedPreferences settings = context.getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        settings.edit().remove("fname").apply();
+        settings.edit().remove("lname").apply();
+        settings.edit().remove("email").apply();
+        settings.edit().remove("id").apply();
+
+    }
 
 
     public static User getCurrentUser (Context context) {
