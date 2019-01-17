@@ -1,6 +1,10 @@
 package com.acidlab.ubci_reclamations.Utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -26,6 +30,15 @@ public class Utilities {
                 sweetAlertDialog.cancel();
             }
         }).show();
+    }
+
+    public  String imageToString(Bitmap bitmap){
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imgBytes =byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgBytes,Base64.DEFAULT);
+
     }
 
 

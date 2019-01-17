@@ -16,4 +16,6 @@ public interface NetworkingAsyncResponse {
 
     default void onReclamationEnCoursGetter(List<Reclamation> reclamations) {}
 
+    default void onReclamationCreated(int successCode) {}
+
 }

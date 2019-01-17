@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Local {
 
-    private float id;
+    private int id;
 
     private String code;
 
@@ -19,7 +19,7 @@ public class Local {
     static private List<Local> Locals = new ArrayList<Local>();
 
 
-    public Local(float id, String label) {
+    public Local(int id, String label) {
         this.id = id;
         this.label = label;
     }
@@ -34,7 +34,7 @@ public class Local {
 
     // Getter Methods
 
-    public float getId() {
+    public int getId() {
         return id;
     }
 
@@ -57,7 +57,7 @@ public class Local {
 
     // Setter Methods
 
-    public void setId(float id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -8,6 +8,7 @@ import com.acidlab.ubci_reclamations.Models.Local;
 import com.acidlab.ubci_reclamations.Models.Reclamation;
 import com.acidlab.ubci_reclamations.Models.User;
 import com.acidlab.ubci_reclamations.Utils.Utilities;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -303,4 +304,47 @@ public class NetworkingHelper {
         };
         queue.add(postRequest);
     }
+
+    public void creationReclamation(final String sujet, final int id_local ) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = this.url + "insertQuery";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (!response.equals("error")) {
+
+                    ((NetworkingAsyncResponse) context).onReclamationCreated(1);
+
+                } else {
+
+                    ((NetworkingAsyncResponse) context).onReclamationCreated(0);
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ((NetworkingAsyncResponse) context).onReclamationCreated(0);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("local_id", String.valueOf(id_local));
+                params.put("user_id", String.valueOf(User.getCurrentUser(context).getId()));
+                params.put("name", User.getCurrentUser(context).getFname() + " " + User.getCurrentUser(context).getLname());
+                params.put("sujet", sujet);
+                // params.put("photos", "33");
+
+                return super.getParams();
+            }
+        };
+
+        queue.add(postRequest);
+
+    }
+
 }

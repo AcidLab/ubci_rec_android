@@ -21,6 +21,11 @@
     <string name="ajout_reclamation">Ajouter réclamation</string>
     <string name="locale">Locale :</string>
     <string name="non_selectionn">Non selectionné</string>
+    <string name="succes">Succès</string>
+    <string name="erreur">Erreur</string>
+    <string name="reclamation_succes">Réclamation ajoutée avec succès</string>
+    <string name="reclamation_erreur">Erreur lors de l\'ajout de la réclamation</string>
+
 
 
 </resources>
