@@ -30,113 +30,211 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/locale"
+                android:text="@string/local"
                 android:textColor="@color/ubcdi_nuance_1"
                 android:textSize="18sp" />
 
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/chosenLocal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:text="@string/non_selectionn"
+                    android:text="@string/type"
                     android:textColor="@color/ubcdi_nuance_1"
                     android:textSize="18sp" />
 
-
-                <Button
-                    android:id="@+id/choisir_local"
+                <RadioGroup
+                    android:id="@+id/type"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_btn_signup"
-                    android:shadowColor="@android:color/transparent"
-                    android:text="@string/choisir"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ubcdi_nuance_1" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp">
 
+                    <RadioButton
+                        android:id="@+id/imb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/imb" />
+
+                    <RadioButton
+                        android:id="@+id/ag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ag" />
+                </RadioGroup>
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/sujet_de_la_reclamation"
-                android:textColor="@color/ubcdi_nuance_1"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/sujet"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="16dp"
-                android:hint="@string/ecrivez_ici_le_sujet" />
 
             <LinearLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:text="@string/ajouter_photo"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/nom_etab"
                     android:textColor="@color/ubcdi_nuance_1"
                     android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/choisir_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/chosenLocal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:text="@string/non_selectionn"
+                        android:textColor="@color/ubcdi_nuance_1"
+                        android:textSize="14sp" />
+
+
+                    <Button
+                        android:id="@+id/choisir_local"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_btn_signup"
+                        android:shadowColor="@android:color/transparent"
+                        android:text="@string/choisir"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ubcdi_nuance_1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/imb_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_btn_signup"
+                    android:layout_marginStart="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/etage"
+                        android:textColor="@color/ubcdi_nuance_1"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/bureau"
+                        android:textColor="@color/ubcdi_nuance_1"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/bureau"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="number" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/sujet_de_la_reclamation"
+                    android:textColor="@color/ubcdi_nuance_1"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/sujet"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:hint="@string/ecrivez_ici_le_sujet" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:text="@string/ajouter_photo"
+                        android:textColor="@color/ubcdi_nuance_1"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/choisir_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_btn_signup"
+                        android:shadowColor="@android:color/transparent"
+                        android:text="@string/choisir"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ubcdi_nuance_1" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/photo_icon" />
+
+                <Button
+                    android:id="@+id/confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/shape_btn_login"
+                    android:padding="15dp"
                     android:shadowColor="@android:color/transparent"
-                    android:text="@string/choisir"
+                    android:text="@string/confirm"
                     android:textAllCaps="false"
-                    android:textColor="@color/ubcdi_nuance_1" />
+                    android:textColor="@color/white" />
+
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:src="@drawable/photo_icon" />
-
-            <Button
-                android:id="@+id/confirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/shape_btn_login"
-                android:padding="15dp"
-                android:shadowColor="@android:color/transparent"
-                android:text="@string/confirm"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

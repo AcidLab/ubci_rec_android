@@ -66,6 +66,8 @@ public class NetworkingHelper {
 
                                 user.saveUser(context);
                                 List<Local> locals = new ArrayList<Local>();
+                                List<Local> locals_IMB = new ArrayList<Local>();
+                                List<Local> locals_AG = new ArrayList<Local>();
 
                                 JSONArray localsObject = jsonResponse.getJSONArray("locals");
 
@@ -78,6 +80,16 @@ public class NetworkingHelper {
                                 }
 
                                 Local.setLocals(locals);
+
+                                for (int j = 0; j < locals.size(); j++) {
+                                    if (locals.get(j).getLabel().toString().toUpperCase().charAt(0) == 'I') {
+                                        locals_IMB.add(locals.get(j));
+                                    } else if (locals.get(j).getLabel().toString().toUpperCase().charAt(0) == 'A') {
+                                        locals_AG.add(locals.get(j));
+                                    }
+                                }
+                                Local.setLocals_IMB(locals_IMB);
+                                Local.setLocals_AG(locals_AG);
 
                                 List<Entity> entities = new ArrayList<Entity>();
                                 JSONArray entitiesObject = jsonResponse.getJSONArray("entities");
@@ -153,6 +165,8 @@ public class NetworkingHelper {
 
                                 user.saveUser(context);
                                 List<Local> locals = new ArrayList<Local>();
+                                List<Local> locals_IMB = new ArrayList<Local>();
+                                List<Local> locals_AG = new ArrayList<Local>();
                                 JSONArray localsObject = jsonResponse.getJSONArray("locals");
 
                                 for (int i = 0; i < localsObject.length(); i++) {
@@ -163,6 +177,17 @@ public class NetworkingHelper {
                                     locals.add(localObject);
                                 }
                                 Local.setLocals(locals);
+
+                                for (int j = 0; j < locals.size(); j++) {
+                                    if (locals.get(j).getLabel().toString().toUpperCase().charAt(0) == 'I') {
+                                        locals_IMB.add(locals.get(j));
+                                    } else if (locals.get(j).getLabel().toString().toUpperCase().charAt(0) == 'A') {
+                                        locals_AG.add(locals.get(j));
+                                    }
+                                }
+
+                                Local.setLocals_IMB(locals_IMB);
+                                Local.setLocals_AG(locals_AG);
 
                                 List<Entity> entities = new ArrayList<Entity>();
                                 JSONArray entitiesObject = jsonResponse.getJSONArray("entities");
@@ -305,7 +330,7 @@ public class NetworkingHelper {
         queue.add(postRequest);
     }
 
-    public void creationReclamation(final String sujet, final int id_local ) {
+    public void creationReclamation(final String sujet, final int id_local, final String bureau, final String etage) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = this.url + "insertQuery";
 
@@ -337,6 +362,8 @@ public class NetworkingHelper {
                 params.put("user_id", String.valueOf(User.getCurrentUser(context).getId()));
                 params.put("name", User.getCurrentUser(context).getFname() + " " + User.getCurrentUser(context).getLname());
                 params.put("sujet", sujet);
+                params.put("bureau", bureau);
+                params.put("etage", etage);
                 // params.put("photos", "33");
 
                 return super.getParams();

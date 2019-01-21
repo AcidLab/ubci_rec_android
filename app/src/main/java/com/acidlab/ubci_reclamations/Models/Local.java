@@ -17,11 +17,29 @@ public class Local {
     private String region;
 
     static private List<Local> Locals = new ArrayList<Local>();
+    static private List<Local> Locals_IMB = new ArrayList<Local>();
+    static private List<Local> Locals_AG = new ArrayList<Local>();
 
 
     public Local(int id, String label) {
         this.id = id;
         this.label = label;
+    }
+
+    public static List<Local> getLocals_IMB() {
+        return Locals_IMB;
+    }
+
+    public static void setLocals_IMB(List<Local> locals_IMB) {
+        Locals_IMB = locals_IMB;
+    }
+
+    public static List<Local> getLocals_AG() {
+        return Locals_AG;
+    }
+
+    public static void setLocals_AG(List<Local> locals_AG) {
+        Locals_AG = locals_AG;
     }
 
     public static List<Local> getLocals() {

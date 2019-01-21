@@ -16,7 +16,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +43,13 @@ public class AjoutReclamationActivity extends AppCompatActivity implements Netwo
     TextView sujetReclamationTV, chosenLocalTV;
     Button choisirPhotoBtn, choisirLocalBtn, confimBtn;
     ImageView chosenImg;
+    LinearLayout content, imb_info;
+    EditText bureau, etage;
 
     static int CODE_CAMERA = 100;
     int local_id = -1;
+    RadioButton imb, ag;
+    int type = -1;
 
 
     @Override
@@ -55,6 +62,45 @@ public class AjoutReclamationActivity extends AppCompatActivity implements Netwo
         choisirPhotoBtn = findViewById(R.id.choisir_photo);
         chosenImg = findViewById(R.id.img);
         confimBtn = findViewById(R.id.confirm);
+        content = findViewById(R.id.content);
+        imb_info = findViewById(R.id.imb_info);
+        bureau = findViewById(R.id.bureau);
+        etage = findViewById(R.id.etage);
+
+        imb_info.setVisibility(View.GONE);
+        content.setVisibility(View.GONE);
+
+
+        imb = findViewById(R.id.imb);
+        ag = findViewById(R.id.ag);
+
+        imb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("IMG", "Immeuble");
+                content.setVisibility(View.VISIBLE);
+                imb_info.setVisibility(View.VISIBLE);
+                type = 1;
+                chosenLocalTV.setText("Non selectionné");
+                local_id = -1;
+                etage.setText("");
+                bureau.setText("");
+            }
+        });
+
+        ag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("AG", "Agence");
+                content.setVisibility(View.VISIBLE);
+                imb_info.setVisibility(View.GONE);
+                type = 2;
+                chosenLocalTV.setText("Non selectionné");
+                local_id = -1;
+                etage.setText("");
+                bureau.setText("");
+            }
+        });
 
         Toolbar mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle(getString(R.string.ajout_reclamation));
@@ -83,8 +129,14 @@ public class AjoutReclamationActivity extends AppCompatActivity implements Netwo
                 builderSingle.setTitle("Faites un choix de la liste :");
 
                 final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(v.getContext(), R.layout.choice_list);
-                for (int i = 0; i < Local.getLocals().size(); i++) {
-                    arrayAdapter.add(Local.getLocals().get(i).getLabel());
+                if (type == 1) {
+                    for (int i = 0; i < Local.getLocals_IMB().size(); i++) {
+                        arrayAdapter.add(Local.getLocals_IMB().get(i).getLabel());
+                    }
+                } else if (type == 2) {
+                    for (int i = 0; i < Local.getLocals_AG().size(); i++) {
+                        arrayAdapter.add(Local.getLocals_AG().get(i).getLabel());
+                    }
                 }
 
 
@@ -99,8 +151,14 @@ public class AjoutReclamationActivity extends AppCompatActivity implements Netwo
                 builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        chosenLocalTV.setText(Local.getLocals().get(which).getLabel());
-                        local_id = Local.getLocals().get(which).getId();
+
+                        if (type == 1) {
+                            chosenLocalTV.setText(Local.getLocals_IMB().get(which).getLabel());
+                            local_id = Local.getLocals_IMB().get(which).getId();
+                        } else if (type == 2) {
+                            chosenLocalTV.setText(Local.getLocals_AG().get(which).getLabel());
+                            local_id = Local.getLocals_AG().get(which).getId();
+                        }
                     }
                 });
                 builderSingle.show();
@@ -114,8 +172,22 @@ public class AjoutReclamationActivity extends AppCompatActivity implements Netwo
 
                 Log.e("LocalID", "" + local_id);
                 if (local_id != -1 && !sujetReclamationTV.getText().toString().equals("")) {
-                    NetworkingHelper n = new NetworkingHelper(AjoutReclamationActivity.this);
-                    n.creationReclamation(sujetReclamationTV.getText().toString(), local_id);
+                    if (type == 1) {
+                        if (!bureau.getText().toString().equals("")) {
+                            if (!etage.getText().toString().equals("")) {
+                                NetworkingHelper n = new NetworkingHelper(AjoutReclamationActivity.this);
+                                n.creationReclamation(sujetReclamationTV.getText().toString(), local_id,bureau.getText().toString(),etage.getText().toString());
+                            } else {
+                                Utilities.alert(AjoutReclamationActivity.this, SweetAlertDialog.WARNING_TYPE, "Avertissement", "Vous devez ajoute le numéro du bureau");
+                            }
+                        } else {
+                            Utilities.alert(AjoutReclamationActivity.this, SweetAlertDialog.WARNING_TYPE, "Avertissement", "Vous devez ajoute le numéro de l'etage");
+                        }
+                    } else if (type == 2) {
+                        NetworkingHelper n = new NetworkingHelper(AjoutReclamationActivity.this);
+                        n.creationReclamation(sujetReclamationTV.getText().toString(), local_id,"","");
+                    }
+
                 } else {
                     if (sujetReclamationTV.getText().toString().equals("")) {
                         Utilities.alert(AjoutReclamationActivity.this, SweetAlertDialog.WARNING_TYPE, "Avertissement", "Vous devez ajoute le sujet de la réclamation");

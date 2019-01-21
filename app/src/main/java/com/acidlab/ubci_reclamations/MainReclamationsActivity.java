@@ -42,7 +42,7 @@ public class MainReclamationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_reclamations);
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.app_name));
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         context = this;

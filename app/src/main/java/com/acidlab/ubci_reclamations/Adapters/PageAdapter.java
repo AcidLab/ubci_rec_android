@@ -35,7 +35,7 @@ public class PageAdapter extends FragmentPagerAdapter {
         // Generate title based on item position
         switch (position) {
             case 0:
-                return "En cours";
+                return "Tickets";
             case 1:
                 return  "En Attente";
             default:
